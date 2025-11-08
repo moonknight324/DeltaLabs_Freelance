@@ -13,6 +13,9 @@ A modern, responsive portfolio website built with React and Vite, featuring an i
 - ✨ GSAP animations
 - 🎭 Smooth page transitions
 
+## Deployed Link
+[Link](https://deltalabs.in)
+
 ## 📋 Prerequisites
 
 - Node.js (v16 or higher)
@@ -286,3 +289,4 @@ Currently, two official plugins are available:
 ---
 
 **Made with ❤️ by Delta Labs**
+
