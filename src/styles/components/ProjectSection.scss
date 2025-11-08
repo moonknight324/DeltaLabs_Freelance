@@ -1,0 +1,59 @@
+@use '../_variables.scss' as *;
+
+.project-section {
+  color: $text-primary-dark; // ensure text is visible on dark background
+  // padding: 10rem 0; // reduced outer space
+  position: relative;
+  z-index: 0; // avoid unintentional overlay stacking
+
+  &__container {
+    width: min(1200px, 90%);
+    margin: 0 auto;
+  }
+
+  &__header {
+    // margin-bottom: 2rem; // tighter gap before first image
+  }
+
+  &__eyebrow {
+    font-size: $font-size-sm;
+    letter-spacing: $letter-spacing-lg;
+    color: $text-muted-dark;
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: $font-weight-bold;
+  }
+
+  &__stack {
+
+    // override some defaults for window-scroll usage
+    .scroll-stack-inner {
+      padding: 6rem 0 90vh; // reduced top gap, still large bottom release
+    }
+
+    .scroll-stack-card {
+      background: transparent;
+      border: none;
+      padding: 0;
+      min-height: auto;
+      position: relative; // allows z-index to apply
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.project-card-image {
+  display: block;
+  width: 80%;
+  height: 600px;
+  aspect-ratio: 16/9;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0b0b0b;
+  object-position: center;
+}

@@ -1,0 +1,194 @@
+@use '../_variables.scss' as *;
+
+.testimonial {
+    background: $background;
+    color: $text-secondary;
+    padding: $spacing-18 $spacing-16; // generous spacing
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.testimonial__container {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: $spacing-10;
+    align-items: start;
+}
+
+.testimonial__label {
+    color: $text-muted; // muted gray
+    font-size: $font-size-lg;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: $spacing-4;
+}
+
+.testimonial__subtitle {
+    color: $text-muted;
+    font-size: $font-size-base;
+    line-height: 1.8;
+    max-width: 32ch;
+}
+
+.testimonial__badges {
+    display: flex;
+    gap: $spacing-4;
+    align-items: center;
+    margin-top: $spacing-8;
+}
+
+.testimonial__badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-2;
+}
+
+.testimonial__badge img {
+    width: $spacing-8;
+    height: $spacing-8;
+    object-fit: contain;
+}
+
+.testimonial__badge-text {
+    color: $text-muted;
+    font-size: $font-size-xs;
+}
+
+.testimonial__right {
+    position: relative;
+}
+
+.testimonial__quote {
+    position: relative;
+}
+
+.testimonial__quote-mark {
+    position: absolute;
+    top: -$spacing-10;
+    left: -$spacing-12;
+    font-size: $font-size-13xl;
+    line-height: 1;
+    color: $text-secondary-dark;
+}
+
+.testimonial__quote-text {
+    font-size: clamp($font-size-lg, 3vw + 0.5rem, $font-size-2xl);
+    font-weight: $font-weight-bold;
+    line-height: 1.5;
+    color: $text-secondary-dark;
+    height: 150px;
+}
+
+// Animation hint class (used by GSAP)
+.testimonial__anim-target {
+    will-change: transform, filter, opacity;
+}
+
+.testimonial__divider {
+    border: none;
+    border-top: 1px solid rgba($text-secondary-dark, 0.08);
+    margin: $spacing-4 0 $spacing-4;
+}
+
+.testimonial__author {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+}
+
+.testimonial__avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.testimonial__author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial__author-name {
+    font-weight: 700;
+    color: $text-secondary-dark;
+}
+
+.testimonial__author-role {
+    font-size: $font-size-sm;
+    color: $text-muted;
+}
+
+.testimonial__nav {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    gap: $spacing-4;
+}
+
+.testimonial__nav-btn {
+    appearance: none;
+    border: 1px solid rgba($text-secondary-dark, 0.08);
+    background: transparent;
+    color: $text-muted;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    transition: color 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+
+.testimonial__nav-btn:hover {
+    color: $text-secondary-dark;
+    border-color: rgba($text-secondary-dark, 0.24);
+}
+
+.testimonial__nav-btn:active {
+    transform: translateY(1px);
+}
+
+// Responsiveness
+@media (max-width: 768px) {
+    .testimonial {
+        padding: $spacing-18 $spacing-4;
+    }
+
+    .testimonial__container {
+        grid-template-columns: 1fr;
+        gap: $spacing-10;
+    }
+
+    .testimonial__subtitle {
+        max-width: none;
+    }
+
+    .testimonial__nav {
+        position: static;
+        margin-top: $spacing-4;
+    }
+}
+
+// Animations
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY($spacing-2);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.testimonial__label,
+.testimonial__subtitle,
+.testimonial__quote,
+.testimonial__author {
+    animation: fadeInUp 500ms ease both;
+}
+
+.testimonial__nav-btn {
+    animation: fadeInUp $transition-slow ease both;
+}

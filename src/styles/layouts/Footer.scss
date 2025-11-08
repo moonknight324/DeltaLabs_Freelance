@@ -1,0 +1,124 @@
+@use '../variables' as *;
+
+.footer {
+  background: #000000;
+  color: #ffffff;
+  padding: $spacing-16 $spacing-4;
+}
+
+.footer-container {
+  max-width: 1280px; // widen layout similar to reference
+  margin: 0 auto;
+  position: relative;
+}
+
+.footer-top-note {
+  position: static; // keep within flow for better alignment
+  text-align: right;
+  margin-bottom: $spacing-3;
+  color: #e0e0e0;
+  font-size: 0.9rem; // 14-15px
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr; // more room for tagline column
+  gap: 96px; // space between columns like reference
+
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.footer-tagline h3 {
+  font-family: $font-primary;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.2px;
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  margin: 0;
+  text-align: left;
+}
+
+.footer-tagline .cta-pill {
+  margin-top: $spacing-5;
+}
+
+.footer-nav h4,
+.footer-contact h4 {
+  font-weight: 700;
+  margin: 0 0 $spacing-3 0;
+}
+
+.footer-nav {
+  margin-top: $spacing-4; // push section a bit lower
+}
+
+.footer-contact {
+  margin-top: $spacing-4; // push section a bit lower
+}
+
+.footer-links {
+  display: flex;
+  gap: $spacing-3;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-5;
+}
+
+.pill {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+  border-radius: 4px; // slightly rounded corners
+  padding: 8px 14px; // thinner buttons
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all $transition-base, box-shadow $transition-base;
+}
+
+.pill:hover {
+  background: #000000;
+  color: #ffffff;
+  box-shadow: 0 0 24px rgba(0, 255, 200, 0.2);
+}
+
+.cta-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+  border-radius: 4px; // slightly rounded corners
+  padding: 12px 22px; // slightly thinner
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform $transition-base, box-shadow $transition-base, background $transition-base, color $transition-base;
+}
+
+.cta-pill:hover {
+  transform: scale(1.05);
+  background: #000000;
+  color: #ffffff;
+  box-shadow: 0 0 24px rgba(0, 255, 200, 0.2);
+}
+
+.footer-contact ul {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px; // more breathing room
+}
+
+.footer-contact a {
+  color: #ffffff;
+}
+
+.footer-brand {
+  text-align: center;
+  margin-top: $spacing-16; // more separation from grid
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-size: clamp(3rem, 8vw, 4.5rem);
+}

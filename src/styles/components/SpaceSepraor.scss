@@ -1,0 +1,70 @@
+@use '../_variables.scss' as *;
+
+// Base spacer
+.space-separator {
+    position: relative;
+    width: 100%;
+    min-height: var(--ss-height, $spacing-0); // default ~6rem
+    margin-block: $spacing-10; // vertical margin around the spacer
+    border: 0; // role=separator
+
+    @media (min-width: $breakpoint-md) {
+        margin-block: $spacing-16;
+    }
+}
+
+// Decorative blur mode
+.space-separator--blur {
+
+    // Using group-like hover interactions via nesting
+    &:hover {
+        .space-separator__blur {
+            opacity: 0.9;
+        }
+
+        .space-separator__glass {
+            transform: scale(1.015);
+        }
+    }
+}
+
+// Layer containing gradient and glass
+.space-separator__blur {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.65;
+    transition: opacity $transition-slow, transform $transition-slow;
+    mix-blend-mode: overlay;
+    // Soft edges
+    mask-image: radial-gradient(50% 50% at 50% 50%, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(50% 50% at 50% 50%, black 30%, transparent 70%);
+}
+
+.space-separator__gradient {
+    position: absolute;
+    inset: 0;
+    opacity: 0.7;
+    filter: blur(48px);
+    background: radial-gradient(ellipse at center,
+            rgba($primary-color, 0.25) 0%,
+            rgba($accent-color, 0.22) 40%,
+            rgba($secondary-color, 0.20) 68%,
+            transparent 80%);
+}
+
+.space-separator__glass {
+    position: absolute;
+    inset: 10%;
+    border-radius: $border-radius-lg;
+    border: 1px solid rgba(#ffffff, 0.10);
+    background: rgba(#ffffff, 0.05);
+    box-shadow: 0 0 60px rgba(255, 255, 255, 0.08);
+    transform: scale(1);
+    transition: transform $transition-slow;
+
+    @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+}

@@ -1,0 +1,325 @@
+@use '../_variables.scss' as *;
+@use '../mixins' as *;
+
+// ============================================
+// Pricing Section Styles
+// ============================================
+
+.pricing-section {
+  background-color: $background-dark;
+  padding: $spacing-8 $spacing-4; // tighter vertical padding
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-10 $spacing-4;
+  }
+}
+
+.pricing-container {
+  max-width: 1050px; // slightly narrower to keep content tighter
+  width: 100%;
+  margin: 0 auto;
+}
+
+// ============================================
+// Section Header
+// ============================================
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: $spacing-6; // tighter header spacing
+
+  @media (max-width: $breakpoint-md) {
+    margin-bottom: $spacing-8;
+  }
+}
+
+.pricing-title {
+  font-size: $font-size-3xl; // reduce title size
+  font-weight: $font-weight-bold;
+  color: $text-primary-dark;
+  margin-bottom: $spacing-3; // tighter
+  line-height: $line-height-tight;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-3xl;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: $font-size-2xl;
+  }
+}
+
+.pricing-title-highlight {
+  color: $primary-color-dark;
+}
+
+.pricing-subtitle {
+  font-size: $font-size-sm; // slightly smaller subtitle
+  color: $text-muted-dark;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: $line-height-normal; // tighter line height
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-sm;
+    padding: 0 $spacing-4;
+  }
+}
+
+// ============================================
+// Pricing Cards Container
+// ============================================
+
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // equal width for all cards
+  gap: $spacing-4; // tighter gap between cards
+  align-items: stretch;
+
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: 1fr;
+    gap: $spacing-6;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+// ============================================
+// Individual Pricing Card
+// ============================================
+
+.pricing-card {
+  background: lighten($background-dark, 7%);
+  border-radius: 4px; // slightly rounded corners
+  padding: $spacing-4; // tighter inner padding
+  display: flex;
+  flex-direction: column;
+  min-height: 460px; // shorter cards
+  transition: all $transition-base;
+  box-shadow: none; // remove glow/background effect
+  border: 1px solid transparent;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-5;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: none; // remove hover glow
+  }
+}
+
+.pricing-card-highlighted {
+  border: 1.5px solid $primary-color-dark;
+  transform: scale(1.04); // subtle pop-out effect
+  box-shadow: none; // remove glow/background effect
+  padding: $spacing-5; // slightly larger than side cards
+  min-height: 500px; // proportionally shorter
+
+  @media (max-width: $breakpoint-lg) {
+    transform: scale(1);
+  }
+
+  &:hover {
+    transform: translateY(-5px) scale(1.04);
+    box-shadow: none; // remove hover glow
+
+    @media (max-width: $breakpoint-lg) {
+      transform: translateY(-5px) scale(1.02);
+    }
+  }
+}
+
+// ============================================
+// Card Header
+// ============================================
+
+.pricing-card-header {
+  margin-bottom: $spacing-4; // tighter
+}
+
+.pricing-card-title {
+  font-size: $font-size-lg; // smaller title
+  font-weight: $font-weight-bold;
+  color: $text-primary-dark;
+  margin-bottom: $spacing-2;
+}
+
+.pricing-card-subtitle {
+  font-size: $font-size-xs; // smaller subtitle
+  color: $text-muted-dark;
+  line-height: $line-height-normal;
+}
+
+// ============================================
+// Pricing Display
+// ============================================
+
+.pricing-card-price {
+  margin-bottom: $spacing-3; // tighter
+}
+
+.pricing-card-original-price {
+  display: block;
+  font-size: $font-size-sm; // smaller
+  color: rgba($text-primary-dark, 0.65);
+  text-decoration: line-through;
+  margin-bottom: $spacing-2;
+}
+
+.pricing-card-current-price {
+  font-size: $font-size-2xl; // smaller current price
+  font-weight: $font-weight-bold;
+  color: $text-primary-dark;
+  line-height: $line-height-tight;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-2xl;
+  }
+}
+
+// ============================================
+// Features List
+// ============================================
+
+.pricing-card-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 $spacing-4 0; // tighter bottom margin
+  flex-grow: 1;
+}
+
+.pricing-card-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-2; // tight icon gap
+  margin-bottom: $spacing-2; // even less vertical spacing
+  color: $text-primary-dark;
+  font-size: $font-size-sm; // smaller feature text
+  line-height: $line-height-normal;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-3;
+  }
+
+  span {
+    flex: 1;
+  }
+}
+
+.pricing-card-check-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+// ============================================
+// CTA Button
+// ============================================
+
+.pricing-card-button {
+  width: 100%;
+  padding: $spacing-2 $spacing-3; // slightly smaller button
+  border-radius: 4px; // slightly rounded button corners
+  font-size: $font-size-sm; // smaller button text
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-base;
+  border: 2px solid $text-primary-dark;
+  background-color: transparent;
+  color: $text-primary-dark;
+  margin-top: auto;
+
+  &:hover {
+    background-color: rgba($accent-color-dark, 0.1);
+    box-shadow: none; // remove button glow
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.pricing-card-button-highlighted {
+  background-color: $primary-color-dark;
+  border-color: $primary-color-dark;
+  color: $text-primary-dark;
+
+  &:hover {
+    background-color: $accent-color-dark;
+    border-color: $accent-color-dark;
+    box-shadow: none; // remove button glow
+  }
+}
+
+// Make Basic and Enterprise buttons white with dark text
+.pricing-card:not(.pricing-card-highlighted) .pricing-card-button {
+  background-color: $background;
+  color: $text-primary;
+  border-color: $background;
+
+  &:hover {
+    background-color: $background;
+    box-shadow: none; // remove hover glow
+  }
+}
+
+// ============================================
+// Read More (link-style) Button
+// ============================================
+
+.pricing-card-readmore {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: $primary-color-dark;
+  cursor: pointer;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0; // no icon/chevron, no gap needed
+  padding: $spacing-1 $spacing-2;
+  margin: 0 0 $spacing-4 0;
+  position: relative;
+  text-align: center;
+}
+
+// ============================================
+// Animation - Fade In on Scroll (optional)
+// ============================================
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pricing-card {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+
+  &:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+}
+

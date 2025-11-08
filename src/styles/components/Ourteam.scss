@@ -1,0 +1,201 @@
+@use '../_variables.scss' as *;
+
+.ourteam-section {
+  background: $background-dark; // black background
+  padding: 60px $spacing-4;
+  position: relative;
+}
+
+.ourteam-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ourteam-header {
+  text-align: center;
+  margin-bottom: $spacing-10;
+}
+
+.ourteam-eyebrow {
+  color: $text-muted-dark;
+  font-size: $font-size-sm; // ~14-16px
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 $spacing-2 0;
+}
+
+.ourteam-title {
+  color: $text-primary-dark;
+  font-weight: $font-weight-bold;
+  font-size: 2.5rem; // ~40px
+  margin: 0;
+}
+
+.ourteam-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.team-card {
+  background: rgba($text-primary-dark, 0.91); // light gray background like in image
+  border-radius: 4px; // slightly rounded
+  overflow: visible; // allow content to show rounded corners
+  box-shadow: 0 4px 12px rgba($background-dark, 0.08); // subtle shadow
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  animation: fadeUp 0.6s ease both;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba($background-dark, 0.12);
+  }
+}
+
+.team-image {
+  position: relative;
+  aspect-ratio: 1 / 1.25; // portrait ratio similar to image
+  overflow: hidden;
+  border-radius: 4px; // match card radius
+}
+
+.team-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px; // match card radius
+  transition: transform 0.5s ease;
+  position: relative;
+  z-index: 0;
+  display: block;
+}
+
+.team-card:hover .team-image img {
+  transform: scale(1.05);
+}
+
+.team-actions {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+
+.icon-btn {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: $background-dark;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba($background-dark, 0.1);
+  transform: translateZ(0);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    background: lighten($background-dark, 10%);
+    box-shadow: 0 4px 12px rgba($background-dark, 0.15);
+  }
+}
+
+.team-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 24px 24px;
+  // Apply dark effect only behind the text area
+  background: linear-gradient(
+    to top,
+    rgba($background-dark, 0.75) 0%,
+    rgba($background-dark, 0.5) 60%,
+    rgba($background-dark, 0) 100%
+  );
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  z-index: 2;
+}
+
+.team-name {
+  color: $text-primary-dark;
+  font-size: 1.25rem; // ~20px
+  font-weight: $font-weight-bold;
+  margin: 0 0 2px 0;
+  line-height: 1.2;
+}
+
+.team-role {
+  color: rgba($text-primary-dark, 0.85);
+  font-size: 0.875rem; // ~14px
+  margin: 0;
+  font-weight: 400;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+.scroll-top-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: lighten($background-dark, 7%);
+  border: 1px solid $border-color;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba($background-dark, 0.4);
+  transition: transform $transition-fast, box-shadow $transition-fast;
+  cursor: pointer;
+  z-index: $z-index-fixed;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba($error-color, 0.25);
+  }
+}
+
+// Responsiveness tweaks
+@media (max-width: $breakpoint-lg) {
+  .icon-btn {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .icon-btn {
+    width: 26px;
+    height: 26px;
+  }
+
+  .team-content {
+    padding: 18px 20px;
+  }
+}

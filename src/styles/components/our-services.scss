@@ -1,0 +1,268 @@
+@use '../_variables.scss' as *;
+@use '../mixins' as *;
+
+.our-services-section {
+  background-color: $background-dark; // Pitch-black background
+  position: relative;
+  overflow: hidden;
+  --scroll-progress: 0;
+
+  .our-services__container {
+    @include container();
+    max-width: 100vw;
+    padding: 10vh 3vw 6vh 3vw;
+  }
+
+  .our-services__header {
+    text-align: center;
+    margin-bottom: 56px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .our-services__eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: $secondary-color-dark;
+    margin-bottom: 20px;
+    font-family: 'Inter', 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+
+  .our-services__title {
+    font-family: 'Inter', 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: $font-weight-bold;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    font-size: clamp(1.75rem, 2.6vw + 0.8rem, 3.25rem);
+    margin: 0 0 16px 0;
+    color: $text-primary-dark;
+    text-wrap: balance;
+  }
+
+  .our-services__intro {
+    margin: 10px auto 0;
+    max-width: 85ch;
+    color: rgba($text-primary-dark, 0.80);
+    font-size: clamp(0.95rem, 0.45vw + 0.9rem, 1.15rem);
+    line-height: 1.7;
+    letter-spacing: 0;
+    font-family: 'Inter', 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    display: grid;
+    gap: 10px;
+
+    span {
+      display: block;
+      margin: 0 auto;
+      max-width: 85ch;
+    }
+  }
+
+  .our-services__scroll-container {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden;
+    padding: 0 0 0 10vw;
+  }
+
+  .our-services__cards {
+    display: flex;
+    gap: 2vw;
+    will-change: transform;
+  }
+}
+
+.service-card {
+  flex: 0 0 26vw;
+  min-height: 44vh;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: default;
+  background: linear-gradient(180deg, rgba($background-dark, 0.9), rgba($background-dark, 0.92));
+  border: 1px solid rgba($text-primary-dark, 0.08);
+  box-shadow: 0 4px 30px rgba($background-dark, 0.45);
+  position: relative;
+
+  // Ensure ServiceCard fills the wrapper and image covers
+  .svc-card {
+    position: absolute;
+    inset: 0;
+  }
+
+  .svc-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  // gradient ring
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, rgba(var(--card-accent-rgb), 0.6), rgba(255,255,255,0.06));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  // mouse-follow highlight
+  &::after {
+    content: '';
+    position: absolute;
+    top: var(--mouse-y, -100px);
+    left: var(--mouse-x, -100px);
+    width: 320px;
+    height: 320px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(160px circle at center, rgba(var(--card-accent-rgb), 0.18), rgba(0,0,0,0) 60%);
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  &:hover::after { opacity: 1; }
+
+  .service-card__content-only {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 2.2vh 1.6vw;
+    height: 100%;
+    color: $text-primary-dark;
+  }
+
+  .service-card__badge {
+    width: fit-content;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--card-accent);
+    background: rgba(var(--card-accent-rgb), 0.08);
+    border: 1px solid rgba(var(--card-accent-rgb), 0.25);
+    padding: 6px 10px;
+    border-radius: 999px;
+  }
+
+  .service-card__title {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    font-family: 'Inter', 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: $text-primary-dark;
+  }
+
+  .service-card__description {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.9;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    color: $secondary-color-dark;
+  }
+
+  .service-card__divider {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(var(--card-accent-rgb), 0.35), rgba(255,255,255,0));
+    border: none;
+    opacity: 0.9;
+  }
+
+  .service-card__list {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: 8px;
+    list-style: none;
+  }
+
+  .service-card__list-item {
+    position: relative;
+    font-size: 0.95rem;
+    color: rgba($text-primary-dark, 0.95);
+    padding-left: 0.2rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -1.1rem;
+      top: 0.55rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--card-accent);
+      box-shadow: 0 0 0 3px rgba(var(--card-accent-rgb), 0.18);
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: $breakpoint-lg) {
+  .our-services-section {
+    .our-services__container {
+      padding: 9vh 2vw 5vh 2vw;
+    }
+
+    .our-services__header {
+      margin-bottom: 40px;
+    }
+
+    .our-services__scroll-container {
+      padding: 0 0 0 10vw;
+    }
+  }
+
+  .service-card {
+    flex: 0 0 28vw;
+    min-height: 42vh;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .our-services-section {
+    .our-services__container {
+      padding: 8vh 3vw 4vh 3vw;
+    }
+
+    .our-services__header {
+      margin-bottom: 30px;
+    }
+
+    .our-services__scroll-container {
+      padding: 0 0 0 15vw;
+    }
+  }
+
+  .service-card {
+    flex: 0 0 65vw;
+    min-height: 40vh;
+    .service-card__content-only { padding: 20px; }
+    .service-card__title { font-size: 1.1rem; }
+    .service-card__description { font-size: 0.9rem; }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .our-services-section {
+    .our-services__cards {
+      gap: 20px;
+    }
+  }
+
+  .service-card {
+    flex: 0 0 85vw;
+    min-height: 38vh;
+  }
+}

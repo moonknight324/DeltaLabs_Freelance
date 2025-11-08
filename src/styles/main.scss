@@ -1,0 +1,33 @@
+@forward './variables';
+@use './components/faq-section';
+@use './_variables.scss';
+@use './base.scss';
+
+
+// layout
+@use './layouts/header.scss';
+@use './layouts/AnimatedNavbar.scss';
+@use './layouts/Footer.scss';
+
+
+// pages
+
+
+
+// component
+// @use './components/';
+@use './components/our-story-section.scss';
+@use './components/our-services.scss';
+@use './components/pricing.scss';
+@use './components/Ourteam.scss';
+@use './components/ClientSection.scss';
+@use './components/WorkFlow.scss';
+@use './components/contact-form.scss';
+@use './components/BackgroundPaths.module.scss';
+@use './components/ProjectSection.scss';
+@use './components/SpaceSepraor.scss';
+@use './components/ServicesSection.scss';
+
+
+
+@use './components/testimonial.scss';

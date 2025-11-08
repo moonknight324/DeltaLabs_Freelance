@@ -1,0 +1,93 @@
+@use '../_variables.scss' as *;
+
+.client-section {
+  background: $background-dark;
+  padding: $spacing-12 $spacing-4;
+}
+
+.client-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.client-eyebrow {
+  color: $text-muted-dark;
+  font-size: $font-size-sm;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: $spacing-2;
+}
+
+.client-title {
+  color: $text-primary-dark;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-3xl;
+  margin-bottom: $spacing-8;
+}
+
+.client-marquee {
+  overflow: hidden;
+  position: relative;
+  // fade-in from right edge and fade-out to left edge
+  -webkit-mask-image: linear-gradient(to right, rgba($background-dark, 0) 0%, rgba($background-dark, 1) 8%, rgba($background-dark, 1) 92%, rgba($background-dark, 0) 100%);
+  mask-image: linear-gradient(to right, rgba($background-dark, 0) 0%, rgba($background-dark, 1) 8%, rgba($background-dark, 1) 92%, rgba($background-dark, 0) 100%);
+}
+
+// subtle dark vignettes on both sides to strengthen the mask effect
+.client-marquee::before,
+.client-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.client-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, rgba($background-dark, 0.8), rgba($background-dark, 0));
+}
+
+.client-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, rgba($background-dark, 0.8), rgba($background-dark, 0));
+}
+
+.client-track {
+  display: flex;
+  gap: $spacing-10;
+  width: max-content;
+  animation: client-scroll 35s linear infinite;
+  will-change: transform;
+}
+
+.client-item {
+  flex: 0 0 auto;
+  filter: grayscale(100%) brightness(0.95);
+  opacity: 0.85;
+  transition: filter $transition-base, opacity $transition-base, transform $transition-base;
+}
+
+.client-item img {
+  height: 56px;
+  width: auto;
+}
+
+.client-item:hover {
+  filter: grayscale(0%) brightness(1);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+@keyframes client-scroll {
+  0% {
+    transform: translateX(10%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}

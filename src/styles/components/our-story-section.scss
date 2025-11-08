@@ -1,0 +1,247 @@
+@use '../_variables.scss' as *;
+
+.our-story-section {
+    // avoid clipping content on smaller screens
+    min-height: 75vh;
+    position: relative;
+    width: 100%;
+    color: $text-primary-dark;
+    overflow: hidden;
+    margin-top: $spacing-12;
+
+    // darker fade at the bottom to blend into next section
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        background: linear-gradient(180deg, rgba($background-dark, 0) 0%, rgba($background-dark, 0.2) 55%, rgba($background-dark, 0.55) 85%, $background-dark 100%);
+    }
+}
+
+
+// soft moving background accents
+.our-story__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+}
+
+
+
+.our-story__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    // tighter top spacing to bring the heading up
+    padding: $spacing-6 $spacing-6 $spacing-12;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    // small vertical gap between rows, generous horizontal gap between columns
+    column-gap: $spacing-32;
+    row-gap: $spacing-6;
+    align-content: start; // place items at the top of the section
+    align-items: start;
+    min-height: 70vh;
+    position: relative;
+    z-index: 1;
+
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
+        column-gap: $spacing-6;
+        row-gap: $spacing-6;
+        padding: $spacing-12 $spacing-5;
+        min-height: auto;
+    }
+}
+
+@keyframes ourStoryGlow {
+    0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.7; }
+    50% { transform: translate3d(0, -1.5%, 0) rotate(4deg); opacity: 0.8; }
+    100% { transform: translate3d(0, 1.5%, 0) rotate(-3deg); opacity: 0.7; }
+}
+
+@keyframes ourStorySpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.our-story__label {
+    font-family: 'Playfair Display', 'Times New Roman', serif;
+    // position: absolute;
+    font-size: clamp(0.75rem, 1.2vw, 1.4rem);
+    font-weight: $font-weight-medium;
+    color: $text-muted-dark;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: $spacing-3;
+    letter-spacing: $letter-spacing-sm;
+    text-transform: none;
+
+    .icon {
+        font-size: 1.4rem;
+    }
+}
+
+.our-story__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: $spacing-5;
+    // center the content across the full section width
+    grid-column: 1 / -1;
+    justify-self: center;
+    align-self: start; // anchor content to the top grid row
+
+    @media (max-width: $breakpoint-md) {
+        align-items: center;
+        text-align: center;
+        gap: $spacing-5;
+    }
+}
+
+.our-story__headline {
+    font-family: 'Inter', 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: $font-weight-bold;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    font-size: clamp(1.75rem, 2.6vw + 0.8rem, 3.25rem);
+    margin: 0;
+    position: relative;
+    text-wrap: balance;
+
+    .gradient-text {
+        display: inline; // keep on the baseline with surrounding text
+        vertical-align: baseline;
+        line-height: inherit;
+        background: $gradient-dark;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        // stop animated gradient and ensure baseline alignment
+        .text-content {
+            display: inline;
+            animation: none !important;
+            background-size: 100% 100% !important;
+            line-height: inherit;
+        }
+    }
+}
+
+// override generic GradientText container styles only for this heading usage
+.our-story__headline .animated-gradient-text {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    background: none;
+    backdrop-filter: none;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: none;
+    align-items: baseline;
+    justify-content: initial;
+}
+
+.our-story__body {
+    max-width: 85ch;
+    color: rgba($text-primary-dark, 0.80);
+    line-height: 1.7;
+    font-size: clamp(0.95rem, 0.45vw + 0.9rem, 1.15rem);
+}
+
+.our-story__highlight {
+    margin-top: $spacing-2;
+    color: rgba($text-primary-dark, 0.90);
+    font-weight: $font-weight-semibold;
+    font-size: clamp(1rem, 0.45vw + 0.9rem, 1.125rem);
+}
+
+.our-story__cta-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-4;
+    margin-top: $spacing-6;
+    z-index: 1;
+}
+
+.our-story__paragraph {
+    font-family: 'Inter', 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: $font-weight-bold;
+    color: $text-primary-dark;
+    max-width: min(90vw, 64rem);
+    line-height: 1.25;
+    font-size: clamp(1.6rem, 2.4vw + 0.4rem, 3rem);
+    letter-spacing: -0.01em;
+    margin-bottom: 0;
+    text-align: center;
+
+    .gradient-text{
+        position: relative;
+        display: inline-block;
+        vertical-align: baseline;
+        margin: 0 $spacing-1;
+    }
+
+    .space {
+        width: 50px;
+        height: 1px;
+        background: $text-primary-dark;
+        margin: 0 auto;
+    }
+}
+
+.our-story__cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    padding: 0.85rem 1.2rem 0.85rem 1.2rem;
+    border-radius: $border-radius-sm;
+    background: linear-gradient(135deg, lighten($primary-color-dark, 4%), $primary-color-dark);
+    border: 1px solid rgba($text-primary-dark, 0.12);
+    color: $text-primary-dark;
+    font-weight: 500;
+    box-shadow: 0 6px 18px rgba($primary-color-dark, 0.25);
+    transform: translateZ(0);
+    transition: transform $transition-base, background $transition-base, box-shadow $transition-base;
+    overflow: hidden;
+
+    // glossy sheen on hover
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 45%;
+        left: -46%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, rgba($text-primary-dark,0) 0%, rgba($text-primary-dark,0.3) 50%, rgba($text-primary-dark,0) 100%);
+        opacity: 0;
+        transition: left 800ms ease, opacity 200ms ease;
+        pointer-events: none;
+    }
+
+    &:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 10px 26px rgba($primary-color-dark, 0.35);
+        &::before { left: 106%; opacity: 1; }
+    }
+
+    &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 4px rgba($primary-color-dark, 0.4);
+    }
+
+    .icon {
+        font-size: 0.95em;
+    }
+}
+
+
