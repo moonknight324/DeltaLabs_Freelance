@@ -14,7 +14,7 @@ A modern, responsive portfolio website built with React and Vite, featuring an i
 - 🎭 Smooth page transitions
 
 ## Deployed Link
-[Link](https://deltalabs.in)
+[Link](https://delta-labs-freelance.pages.dev/)
 
 ## 📋 Prerequisites
 
@@ -26,7 +26,7 @@ A modern, responsive portfolio website built with React and Vite, featuring an i
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/moonknight324/DeltaLabs_Freelance.git
 cd Delta_Labs_Freelance
 ```
 
@@ -251,23 +251,6 @@ npm run dev
 - Safari (latest)
 - Edge (latest)
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is private and proprietary.
-
-## 📞 Support
-
-For questions or support, contact: deltalabs.in@gmail.com
-
----
 
 ## 📚 Additional Resources
 
@@ -289,4 +272,5 @@ Currently, two official plugins are available:
 ---
 
 **Made with ❤️ by Delta Labs**
+
 
